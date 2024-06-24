@@ -85,14 +85,29 @@ pdf_links = [
     {
         "title": "A New Frontier for Causal Reasoning with Large Language Models",
         "url": "https://arxiv.org/pdf/2312.09397",
-    }
+    },
+    {"title": "Attention Is All You Need", "url": "https://arxiv.org/pdf/1706.03762"},
+    {
+        "title": "BERT- Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "url": "https://arxiv.org/pdf/1810.04805",
+    },
+    {
+        "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+        "url": "https://arxiv.org/pdf/2201.11903",
+    },
+    {
+        "title": "Denoising Diffusion Probabilistic Models",
+        "url": "https://arxiv.org/pdf/2006.11239",
+    },
 ]
+
 
 def is_exist(pdf_file):
     return os.path.exists(f"./pdf_file/{pdf_file['title'].replace(' ', '_')}.pdf")
 
+
 # Ensure the directory exists
-os.makedirs('./pdf_file', exist_ok=True)
+os.makedirs("./pdf_file", exist_ok=True)
 
 # Create an SSL context to ignore SSL certificate errors
 ssl_context = ssl.create_default_context(cafile=certifi.where())
@@ -107,7 +122,9 @@ urllib.request.install_opener(opener)
 for pdf_file in pdf_links:
     if not is_exist(pdf_file):
         try:
-            wget.download(pdf_file["url"], f"./pdf_file/{pdf_file['title'].replace(' ', '_')}.pdf")
+            wget.download(
+                pdf_file["url"], f"./pdf_file/{pdf_file['title'].replace(' ', '_')}.pdf"
+            )
             print(f"Downloaded: {pdf_file['title']}")
         except Exception as e:
             print(f"Failed to download {pdf_file['title']}: {e}")
