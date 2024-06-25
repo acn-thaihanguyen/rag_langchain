@@ -47,6 +47,7 @@ def main(folder_name: str):
     )
     _ = pc.build_db(documents=documents)
 
+
 if __name__ == "__main__":
     parser = ArgumentParser(
         description="Process PDFs and build a Pinecone vector store."

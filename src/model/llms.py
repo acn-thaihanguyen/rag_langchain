@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from langchain_community.llms.openai import OpenAI
-from langchain_google_genai import (ChatGoogleGenerativeAI,
-                                    GoogleGenerativeAIEmbeddings)
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 from src.logger.simple_logger import BaseLogger
