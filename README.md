@@ -124,7 +124,6 @@ Ask any question and receive answers from our powerful AI.
     ```
     streamlit run SmartDocumentQuery.py
     ```
-
 ## Acknowledgements
 
 - [LangChain](https://github.com/langchain-ai/langchain)
