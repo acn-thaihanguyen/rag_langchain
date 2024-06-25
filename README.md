@@ -111,6 +111,7 @@ Ask any question and receive answers from our powerful AI.
     ```bash
     OPENAI_API_KEY=your-openai-api-key
     PINECONE_API_KEY=your-pinecone-api-key
+    GOOGLE_API_KEY=your-google-api-key
     ```
 
 5. Build a vector store DB using Pinecone
@@ -124,6 +125,7 @@ Ask any question and receive answers from our powerful AI.
     ```
     streamlit run SmartDocumentQuery.py
     ```
+
 ## Acknowledgements
 
 - [LangChain](https://github.com/langchain-ai/langchain)
