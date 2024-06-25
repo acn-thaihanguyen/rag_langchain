@@ -4,8 +4,9 @@ from argparse import ArgumentParser
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 
-from const import INDEX_NAME, NAME_SPACE
+from src.const import INDEX_NAME, NAME_SPACE
 from src.document_loaders.pdf import FolderPDFLoader as FolderPDFLoaderTest
+from src.model.llms import load_embedding_model
 from src.splitters.text_splitter import TextSplitter
 from src.vector_db.pinecone_db import PineConeVectorDB
 
@@ -35,7 +36,8 @@ def main(folder_name: str):
         doc.metadata.update({"source": source_pdf})
 
     # Initialize embeddings
-    embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+    # TODO: Currently it is not possible to use GoogleAPI with current PineCone setup. Add support for GoogleAPI embeddings.
+    embeddings = load_embedding_model("openai")
 
     # Initialize and build the vector store
     pc = PineConeVectorDB(
@@ -46,8 +48,11 @@ def main(folder_name: str):
     _ = pc.build_db(documents=documents)
 
 if __name__ == "__main__":
-    parser = ArgumentParser(description="Process PDFs and build a Pinecone vector store.")
-    parser.add_argument('folder_name', type=str, help='Name of the folder containing PDF files')
-
+    parser = ArgumentParser(
+        description="Process PDFs and build a Pinecone vector store."
+    )
+    parser.add_argument(
+        "folder_name", type=str, help="Name of the folder containing PDF files"
+    )
     args = parser.parse_args()
     main(args.folder_name)
