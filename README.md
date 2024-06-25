@@ -24,6 +24,37 @@ graph TD
 6. **Context and Question**: The context retrieved from the VectorDB and the user's question.
 7. **LLM (Large Language Model)**: Processes the context and question to generate an answer.
 
+## Project Structure
+
+```
+rag_langchain
+├── README.md
+├── data_source
+│   ├── download.py  # Script to download data sources
+│   ├── pdf_file     # Directory containing PDF files for the project
+│   └── pdf_file_test
+│       └── Attention_Is_All_You_Need.pdf  # Sample PDF file for testing
+├── notebooks
+│   ├── document_loaders.ipynb  # Jupyter notebook for testing document loaders
+│   ├── retriever.ipynb         # Jupyter notebook for testing the retriever
+│   ├── test.ipynb              # Jupyter notebook for various tests
+│   └── vector_db.ipynb         # Jupyter notebook for testing vector database interactions
+├── requirements.txt  # List of project dependencies
+└── src
+    ├── build_db.py  # Script to build the vector database
+    ├── const.py     # File containing project constants
+    ├── document_loaders
+    │   ├── base.py  # Base class for document loaders
+    │   └── pdf.py   # PDF document loader implementation
+    ├── model
+    │   └── llms.py  # Script containing LLM-related functionalities
+    ├── splitters
+    │   └── text_splitter.py  # Script for splitting text into chunks
+    └── vector_db
+        ├── pinecone_db.py   # Pinecone vector database implementation
+        └── vector_db_base.py  # Base class for vector databases
+```
+
 ## How to Run
 
 ### Prerequisites
@@ -62,36 +93,11 @@ graph TD
     PINECONE_API_KEY=your-pinecone-api-key
     ```
 
-## Project Structure
+5. Build a vector store DB using Pinecone
 
-```
-rag_langchain
-├── README.md
-├── data_source
-│   ├── download.py  # Script to download data sources
-│   ├── pdf_file     # Directory containing PDF files for the project
-│   └── pdf_file_test
-│       └── Attention_Is_All_You_Need.pdf  # Sample PDF file for testing
-├── notebooks
-│   ├── document_loaders.ipynb  # Jupyter notebook for testing document loaders
-│   ├── retriever.ipynb         # Jupyter notebook for testing the retriever
-│   ├── test.ipynb              # Jupyter notebook for various tests
-│   └── vector_db.ipynb         # Jupyter notebook for testing vector database interactions
-├── requirements.txt  # List of project dependencies
-└── src
-    ├── build_db.py  # Script to build the vector database
-    ├── const.py     # File containing project constants
-    ├── document_loaders
-    │   ├── base.py  # Base class for document loaders
-    │   └── pdf.py   # PDF document loader implementation
-    ├── model
-    │   └── llms.py  # Script containing LLM-related functionalities
-    ├── splitters
-    │   └── text_splitter.py  # Script for splitting text into chunks
-    └── vector_db
-        ├── pinecone_db.py   # Pinecone vector database implementation
-        └── vector_db_base.py  # Base class for vector databases
-```
+    ```bash
+    python src/build_db.py <folder_containing_pdf_files>
+    ```
 
 ## Acknowledgements
 
